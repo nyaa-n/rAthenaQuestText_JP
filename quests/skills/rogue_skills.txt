@@ -1,0 +1,917 @@
+//===== rAthena Script ======================================= 
+//= Rogue Skills Quests
+//===== By: ================================================== 
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= Auriga Project
+//===== Description: ========================================= 
+//= [Official Conversion]
+//= Quests for skills: CLose Confine
+//===== Additional Comments: ================================= 
+//============================================================
+
+//-----------------------------------------------
+//==== クローズコンファイン - RG_CLOSECONFINE
+//	■ SKILL_CLOSECONFINE   -> 0～
+//-----------------------------------------------
+in_rogue.gat,355,179,0	script	ハイジャラ・グレグ	46,{
+	if(getskilllv(1005)) {
+		mes "[ハイジャラ・グレグ]";
+		mes "この前は本当にありがとう。";
+		mes "お前にも転生の限界を超越してほしい。";
+		close;
+	}
+	if(getbaseclass(Class,2) != CLASS_RG) {
+		mes "[ハイジャラ・グレグ]";
+		mes "誰か……俺を……";
+		mes "ローグを呼んでくれ……";
+		mes "頼む……。";
+		close;
+	}
+	switch(SKILL_CLOSECONFINE) {
+	case 0:
+		mes "[ハイジャラ・グレグ]";
+		mes "宝物というものは、";
+		mes "持ち主が最初から決まっていると";
+		mes "いわれるが……";
+		mes "欲張りすぎたかな……。";
+		close;
+	case 1:
+		mes "[ハイジャラ・グレグ]";
+		mes "お前は誰だ？　どうやって";
+		mes "この部屋を探し出したのだ？";
+		mes "一体何者が俺をここまで";
+		mes "追い詰めるのだ！";
+		mes "正体を明かせ！";
+		next;
+		if(select("私は彼らと関係ありません","目的は分かっているでしょう？")==2) {
+			mes "[ハイジャラ・グレグ]";
+			mes "^00FF00「クローズコンファイン!!」^000000";
+			misceffect 174;
+			misceffect 175,"";
+			next;
+			mes "[ハイジャラ・グレグ]";
+			//mes "^00FF00「バックステップ!!」^000000";	//本鯖仕様
+			mes "^00FF00「バックスタブ!!」^000000";
+			misceffect 190,"";
+			percentheal -95,0;
+			next;
+			mes "[ハイジャラ・グレグ]";
+			mes "これくらいで許してやる。";
+			mes "二度と俺の前に現れるな！";
+			close;
+		}
+		mes "[ハイジャラ・グレグ]";
+		//mes "私は……";	//本鯖仕様
+		mes "奴らとは違うのか……？";
+		mes "ではなぜここに来た？";
+		next;
+		if(select("あなたを助けに来ました","ただの通りすがりです")==2) {
+			mes "[ハイジャラ・グレグ]";
+			mes "それでは、また今度話そう。";
+			close;
+		}
+		mes "[ハイジャラ・グレグ]";
+		mes "あ……ありがとう……。";
+		mes "この前、伝説のローグ、チェテクベの";
+		mes "秘術書を見つけて、その中に";
+		mes "多くの秘密が書かれていた。";
+		mes "チェテクベについて聞いた事はあるか？";
+		next;
+		if(select("いいえ","聞いた事はあります")==1) {
+			mes "[ハイジャラ・グレグ]";
+			mes "チェテクベは100年前の人物なのだ。";
+			mes "彼は人で始めて転生を成し遂げた。";
+			mes "一般的に、転生しても転生前の記憶が";
+			mes "どこかに残り、特に職業は転生前と";
+			mes "同じものに就くはずなのだが、";
+			mes "彼はその常識を覆したのだ。";
+			next;
+			mes "[ハイジャラ・グレグ]";
+			mes "転生前にモンクだった彼が、";
+			mes "転生後に就いた職業は……";
+			mes "ローグだった。";
+			next;
+			mes "[ハイジャラ・グレグ]";
+			mes "そしてスキルも、ローグのスキルを";
+			mes "単に習得しただけではなく、";
+			mes "モンクの「白羽取り」を……";
+			mes "しかも、モンクのそれより";
+			mes "さらに洗練されたものを体得したのだ。";
+			next;
+		}
+		mes "[ハイジャラ・グレグ]";
+		//mes "私は" +(@menu==1? "そ": "ハイジャラ")+ "の秘術書を手に入れて、";	//本鯖仕様
+		mes "私は" +(@menu==1? "そ": "チェテクベ")+ "の秘術書を手に入れて、";
+		mes "三人の息子達に教えたのだ。";
+		mes "それから、問題が起こった。";
+		mes "あ、今は余裕がない。私を手伝って";
+		mes "三人の息子と私が安全に";
+		mes "過ごせるようにしてくれないか？";
+		next;
+		if(select("はい、喜んで!!","今は私も余裕がありません")==2) {
+			mes "[ハイジャラ・グレグ]";
+			mes "それでは、また今度話そう。";
+			close;
+		}
+		mes "[ハイジャラ・グレグ]";
+		mes "ありがとう。";
+		mes "では、この書状を";
+		mes "末っ子である^FF0000ルイ・グレグ^000000に";
+		mes "急いで渡してくれ。";
+		next;
+		mes "^0000FF-ハイジャラの書状獲得-^000000";
+		set SKILL_CLOSECONFINE,2;
+		close;
+	case 2:
+		mes "[ハイジャラ・グレグ]";
+		mes "時間がない。";
+		mes "書状を末っ子の^FF0000ルイ^000000に";
+		mes "渡してほしい。";
+		mes "^FF0000ルイ^000000はローグギルドの中の";
+		mes "ホルグレンJr.の近くにいる。";
+		mes "急いでくれ！";
+		close;
+	case 3:
+		mes "[ハイジャラ・グレグ]";
+		mes "^FF0000トール^000000はヘルマンソンJr.の";
+		mes "横にいる。";
+		close;
+	case 4:
+		mes "[ハイジャラ・グレグ]";
+		mes "^FF0000ジェイ^000000はギルドの中の";
+		mes "アントニオJr.の横にいる。";
+		close;
+	case 5:
+		mes "^0000FF-ジェイ・グレグの書状を渡した-^000000";
+		next;
+		mes "[ハイジャラ・グレグ]";
+		mes "ふ～、とりあえず三人の息子に";
+		mes "危機的状況になったことは伝えたから";
+		mes "少しほっとした。ありがとう。";
+		mes "あとはギルドで処理すると思うよ。";
+		mes "お前のおかげで助かった。ありがとう。";
+		next;
+		mes "[ハイジャラ・グレグ]";
+		mes "お前がいなかったら、俺と俺の息子達は";
+		mes "危険な目にあったかも知れない。";
+		mes "お礼に秘術を教えるから、";
+		mes "^FF0000トール^000000の所へ";
+		mes "行ってみるように。";
+		set SKILL_CLOSECONFINE,6;
+		close;
+	case 6:
+		mes "[ハイジャラ・グレグ]";
+		mes "秘術習得のために";
+		mes "^FF0000トール^000000を訪ねてみるように。";
+		close;
+	case 7:
+		mes "[ハイジャラ・グレグ]";
+		mes "お前は修練場に居たはずだが、";
+		mes "どうした？　こんな所で。";
+		mes "^FF0000トール^000000の所へ行って来い。";
+		close;
+	case 8:
+		mes "[ハイジャラ・グレグ]";
+		mes "お前は特別ということか……。";
+		mes "こんなに早く習得するとはな。";
+		mes "まず^FF0000トール^000000の所へ行って";
+		mes "また戻ってこい。";
+		close;
+	case 9:
+		mes "[ハイジャラ・グレグ]";
+		mes "あ……戻ってきたか？";
+		mes "すごいな。では、秘術を……";
+		mes "む？";
+		mes "秘術……書……が……。";
+		misceffect 190;
+		initnpctimer "#Assassin01";
+		set SKILL_CLOSECONFINE,10;
+		close;
+	case 10:
+		mes "[ハイジャラ・グレグ]";
+		mes "あの……刺客……に……";
+		mes "秘術……書……を……。";
+		initnpctimer "#Assassin01";
+		close;
+	case 11:
+		mes "^0000FF-チェテクベの秘術書を渡した-^000000";
+		next;
+		mes "[ハイジャラ・グレグ]";
+		mes "秘術を覚えたということは、";
+		mes "チェテクベ様が転生の限界を";
+		mes "破ったように、お前にもそんな日が";
+		mes "来るよう願っている。";
+		mes "一応、秘術が持つ効果について";
+		mes "俺が知っていることを話そうか？";
+		next;
+		if(select("はい、お願いします","いいえ、結構です")==1) {
+			mes "[ハイジャラ・グレグ]";
+			mes "まず^4D4DFFクローズコンファイン^000000が";
+			mes "移動妨害のスキルだということは";
+			mes "すでに知っているはずだから、";
+			mes "対象、つまり人間とモンスターに";
+			mes "分けて説明しよう。";
+			next;
+			mes "[ハイジャラ・グレグ]";
+			mes "まず、お前は攻城戦等での";
+			mes "ローグの役割について、もしかしたら";
+			mes "俺と違う見方をしているかもしれんが、";
+			mes "俺はストリップ系のスキルが現在の";
+			mes "主流だと考えている。";
+			next;
+			mes "[ハイジャラ・グレグ]";
+			mes "しかし、白羽取りと似ている";
+			mes "^4D4DFFクローズコンファイン^000000が";
+			mes "世に広がるようになれば、";
+			mes "我らローグの地位がさらに";
+			mes "上がることは明らかだ。";
+			next;
+			mes "[ハイジャラ・グレグ]";
+			mes "もちろん、白羽取りがあるのに";
+			mes "なぜこのような結論を出すのか？";
+			mes "という疑問はあるだろう。";
+			mes "しかし、その役割が白羽取りとは";
+			mes "異なるということを説明する。";
+			next;
+			mes "[ハイジャラ・グレグ]";
+			mes "^4D4DFFクローズコンファイン^000000は";
+			mes "白羽取りとは似て非なるものだ。";
+			mes "まず、白羽取りは敵の攻撃を";
+			mes "押さえ込むスキルであるが、";
+			mes "このスキルは相手の動き自体を";
+			mes "封じてしまうものだ。";
+			next;
+			mes "[ハイジャラ・グレグ]";
+			mes "相手の攻撃の有る無しとは関係なく、";
+			mes "スキル自体の成功率に従って";
+			mes "対象の動きを封じ込める……";
+			mes "つまり移動を不可能にするのだ。";
+			next;
+			mes "[ハイジャラ・グレグ]";
+			mes "もちろん、ハイディング、テレポート、";
+			mes "蝶の羽、ハエの羽、ノックバックなどの";
+			mes "使用や発生で抜け出す事ができるが、";
+			mes "攻城戦では今言ったうちハイディング";
+			mes "しか有効にならないから、";
+			mes "特に効果が有効になるスキルなのだ。";
+			next;
+			mes "[ハイジャラ・グレグ]";
+			mes "^4D4DFFクローズコンファイン^000000により";
+			mes "動きを封じた対象には、全てのスキルを";
+			mes "使うことができる。";
+			mes "しかし、相手もスキルを使える。";
+			mes "あ、バックスタブに限っては";
+			mes "1回しか使うことができない。";
+			next;
+			mes "[ハイジャラ・グレグ]";
+			mes "有効な使い方の例を挙げよう。";
+			mes "まず、お前が敵の動きを封じ、";
+			mes "ストリップ系スキルを使用した後";
+			mes "味方と共に敵を集中攻撃する。";
+			mes "どうだ、コンビネーション技として";
+			mes "抜群の成果が出せるだろう？";
+			next;
+			mes "[ハイジャラ・グレグ]";
+			mes "そしてもう一つ！　手強いモンスター";
+			mes "に遭遇した時にも重要な役割を";
+			mes "狙う事ができるのだ。";
+			mes "ボスクラスを除いたモンスターの";
+			mes "動きを10秒間封じ込めることができる。";
+			mes "これで仲間からの期待も増すだろう。";
+			next;
+			mes "[ハイジャラ・グレグ]";
+			mes "ふぅ、長々と話したが、";
+			mes "他の使い方は実際に色々と";
+			mes "試しているうちに見つかるだろう。";
+			mes "よし、もう言うことはない。";
+			mes "お前がローグの伝説を築くことを";
+			mes "陰ながら願っているぞ。";
+		}
+		else {
+			mes "[ハイジャラ・グレグ]";
+			mes "まぁ、実際に使えば";
+			mes "すぐに色々と分かるだろう。";
+		}
+		next;
+		mes "-クローズコンファインを習得した-";
+		set SKILL_CLOSECONFINE,0;
+		skill 1005,1,0;
+		misceffect 348,"";
+		close;
+	}
+}
+
+in_rogue.gat,152,29,0	script	ルイ・グレグ	84,{
+	if(getskilllv(1005)) {
+		mes "[ルイ・グレグ]";
+		mes "あの有名なチェテクベ様の";
+		mes "エピソードについて兄さん達が";
+		mes "言っていました。";
+		mes "秘術のコンセプトは";
+		mes "「一人捕らえたら、確実に倒せ！」";
+		mes "だそうです……。";
+		close;
+	}
+	if(getbaseclass(Class,2) != CLASS_RG) {
+		mes "[ルイ・グレグ]";
+		mes "トンネルドライブが好きです。";
+		mes "そ～っと敵に向かって近づく……";
+		mes "その何とも言えない感覚。";
+		mes "あなたはご存じですか？";
+		close;
+	}
+	switch(SKILL_CLOSECONFINE) {
+	case 0:
+		mes "[ルイ・グレグ]";
+		mes "^FF0000お父さん^000000が私達に秘術を";
+		mes "伝授してくれている途中、";
+		mes "急に消えました。";
+		mes "楽しそうに教えてくれて";
+		mes "いたんですが……";
+		next;
+		mes "[ルイ・グレグ]";
+		mes "おそらく、ローグギルドの";
+		mes "どこか隠された部屋にいるのでは";
+		mes "ないでしょうか……。";
+		set SKILL_CLOSECONFINE,1;
+		close;
+	case 1:
+		mes "[ルイ・グレグ]";
+		mes "^FF0000お父さん^000000はローグギルドの";
+		mes "どこか隠された部屋にいると";
+		mes "思います……。";
+		mes "その部屋はマキ姉さんの";
+		mes "隣の部屋らしいのですが、";
+		mes "探してみないと……。";
+		close;
+	case 2:
+		mes "^0000FF-ハイジャラの書状を渡した-^000000";
+		next;
+		mes "[ルイ・グレグ]";
+		mes "お父さんが……!?";
+		mes "早く兄さんにこの事を知らせないと！";
+		mes "この書状を^FF0000トール^000000兄さんに";
+		mes "渡して頂けますか？";
+		mes "^0000FF-ルイ・グレグの書状獲得-^000000";
+		set SKILL_CLOSECONFINE,3;
+		close;
+	case 3:
+		mes "[ルイ・グレグ]";
+		mes "早く兄さんにこの事を知らせないと！";
+		mes "書状をトール兄さんに渡してください。";
+		mes "^FF0000トール^000000兄さんはギルドの";
+		mes "ヘルマンソンJr.の横にいます。";
+		close;
+	case 4:
+		mes "[ルイ・グレグ]";
+		mes "^FF0000ジェイ^000000兄さんはギルドの";
+		mes "アントニオJr.の横にいます。";
+		close;
+	case 5:
+		mes "[ルイ・グレグ]";
+		mes "^FF0000お父さん^000000は隠し部屋にいます。";
+		close;
+	case 6:
+		mes "[ルイ・グレグ]";
+		mes "秘術の習得ですか？";
+		mes "^FF0000トール^000000兄さんの所へ";
+		mes "行ってください。";
+		close;
+	case 7:
+		mes "[ルイ・グレグ]";
+		mes "あ、どうしてここに？";
+		mes "今はうろうろしちゃいけませんよ。";
+		mes "早く^FF0000トール^000000兄さんの所に";
+		mes "戻ってください。";
+		close;
+	case 8:
+		mes "[ルイ・グレグ]";
+		mes "おお！　すごいですね！";
+		mes "^FF0000トール^000000兄さんの所で";
+		mes "もっと色々話を聞けるはずです。";
+		close;
+	case 9:
+		mes "[ルイ・グレグ]";
+		mes "ああ、説明なら^FF0000お父さん^000000の所に";
+		mes "行ってみてください。";
+		mes "私はまだそれを習得していませんし。";
+		close;
+	default:
+		mes "[ルイ・グレグ]";
+		mes "うわ、すごいですね！";
+		mes "私もあなたのようになりたいです。";
+		close;
+	}
+}
+
+in_rogue.gat,268,125,2	script	トール・グレグ	84,{
+	if(getskilllv(1005)) {
+		mes "[トール・グレグ]";
+		mes "チェテクベ様にはこんな";
+		mes "エピソードがある。";
+		mes "『俺？　俺はチェテクベだ。貴様は？』";
+		mes "『お前は、ファラオか？』";
+		mes "こう聞いたと同時に攻撃したらしい。";
+		close;
+	}
+	if(getbaseclass(Class,2) != CLASS_RG) {
+		mes "[トール・グレグ]";
+		mes "スナッチャーを覚えて";
+		mes "誰かを攻撃すればがっぽりと";
+		mes "アイテムが稼げるんだろうが、";
+		mes "何で俺にはできないんだ……。";
+		close;
+	}
+	switch(SKILL_CLOSECONFINE) {
+	case 0:
+		mes "[トール・グレグ]";
+		mes "あれ、親父は俺をここで放ったまま";
+		mes "どこに行ったんだ？";
+		mes "ギルド内の隠れ部屋に行ったのか？";
+		mes "さっき俺達を襲いやがったやつらと";
+		mes "何か関係があるのか……";
+		mes "なぜ^FF0000親父^000000を襲ったんだ？　秘術か？";
+		set SKILL_CLOSECONFINE,1;
+		close;
+	case 1:
+		mes "[トール・グレグ]";
+		mes "^FF0000親父^000000はローグギルドの";
+		mes "隠れ部屋にいると思うが……。";
+		mes "マキの話では、マキの左側の部屋の";
+		mes "中のどこかに隠れているらしい……。";
+		close;
+	case 2:
+		mes "[トール・グレグ]";
+		mes "^FF0000ルイ^000000はローグギルドの中の";
+		mes "ホルグレンJr.の横にいるはずだ。";
+		close;
+	case 3:
+		mes "^0000FF-ルイ・グレグの書状を渡した-^000000";
+		next;
+		mes "[トール・グレグ]";
+		mes "クソ!!　そうだったのか！";
+		mes "これを早く兄貴に知らせないと！";
+		mes "お前がこの書状を届けてくれれば、";
+		mes "書状に書いてある通りお前にも";
+		mes "秘術を教えてやる。";
+		mes "だから頼んだぞ。";
+		next;
+		mes "[トール・グレグ]";
+		mes "^FF0000ジェイ^000000兄貴はギルドの";
+		mes "アントニオJr.の横にいるから";
+		mes "早く書状を届けてくれ。";
+		mes "^0000FF-トール・グレグの書状獲得-^000000";
+		set SKILL_CLOSECONFINE,4;
+		close;
+	case 4:
+		mes "[トール・グレグ]";
+		mes "^FF0000ジェイ^000000兄貴はギルドの";
+		mes "アントニオJr.の横にいるから";
+		mes "早く書状を届けてくれ。";
+		close;
+	case 5:
+		mes "[トール・グレグ]";
+		mes "^FF0000親父^000000はギルドの隠し部屋にいる。";
+		close;
+	case 6:
+		mes "[トール・グレグ]";
+		mes "そうか、秘術を習得するために";
+		mes "来たと？　結構大変だぞ？";
+		mes "^4D4DFFクローズコンファイン^000000はまず、";
+		mes "封鎖の概念を覚えなければならんが";
+		mes "簡単ではない。覚悟しろよ。";
+		mes "説明を聞くか？";
+		next;
+		if(select("はい、教えてください","説明はいりません")==1) {
+			mes "[トール・グレグ]";
+			mes "一度だけしか説明しないから";
+			mes "よく聞け。";
+			mes "これから修練場の中に入ると";
+			mes "誰かが出てくるはずだ。";
+			mes "そうしたら、そいつを捕まえろ。";
+			next;
+			mes "[トール・グレグ]";
+			mes "捕まえるということは、";
+			mes "ぴったりとそばに接近しないと";
+			mes "ならないということだ。";
+			next;
+			mes "[トール・グレグ]";
+			mes "そこから封鎖の修練が始まる。";
+			mes "そいつの身動きを止めるんだ。";
+			mes "左、右、後ろに動きながら";
+			mes "お前から逃げるのを妨害しろ。";
+			mes "じゃ、行ってこい。";
+			close2;
+		}
+		warp "in_rogue.gat",89,114;
+		end;
+	case 7:
+		mes "[トール・グレグ]";
+		mes "なかなか大変だろう？";
+		mes "修練しに行くか？";
+		next;
+		if(select("はい、行きます","いいえ")==2) {
+			mes "[トール・グレグ]";
+			mes "また修練をやる気が出れば";
+			mes "俺に声をかけてな。";
+			close;
+		}
+		mes "[トール・グレグ]";
+		mes "一度だけしか説明しないから";
+		mes "よく聞け。";
+		mes "これから修練場の中に入ると";
+		mes "誰かが出てくるはずだ。";
+		mes "そうしたら、そいつを捕まえろ。";
+		next;
+		mes "[トール・グレグ]";
+		mes "捕まえるということは、";
+		mes "ぴったりとそばに接近しないと";
+		mes "ならないということだ。";
+		next;
+		mes "[トール・グレグ]";
+		mes "そこから封鎖の修練が始まる。";
+		mes "そいつの身動きを止めるんだ。";
+		mes "左、右、後ろに動きながら";
+		mes "お前から逃げるのを妨害しろ。";
+		mes "じゃ、行ってこい。";
+		set SKILL_CLOSECONFINE,6;
+		close2;
+		warp "in_rogue.gat",89,114;
+		end;
+	case 8:
+		mes "[トール・グレグ]";
+		mes "やるじゃないか。";
+		mes "もう習得しちまうとはな。";
+		mes "おめでとうと言っておこう。";
+		mes "じゃ、^FF0000親父^000000の所に行ってみな。";
+		mes "そうすればスキルのことを";
+		mes "詳しく聞けるだろう。";
+		set SKILL_CLOSECONFINE,9;
+		close;
+	case 9:
+		mes "[トール・グレグ]";
+		mes "^FF0000親父^000000の所に行けと";
+		mes "言っただろう？";
+		close;
+	default:
+		mes "[トール・グレグ]";
+		mes "ほう、もう俺より強く見えるな。";
+		close;
+	}
+}
+
+in_rogue.gat,181,114,3	script	ジェイ・グレグ	85,{
+	if(getskilllv(1005)) {
+		mes "[ジェイ・グレグ]";
+		mes "チェテクベ様の性格は無鉄砲……。";
+		mes "そう、無鉄砲なんだよ。";
+		mes "チェテクベ様の無鉄砲な性格……";
+		mes "それが秘術を生み出したんだろうな！";
+		mes "うんうん。";
+		close;
+	}
+	if(getbaseclass(Class,2) != CLASS_RG) {
+		mes "[ジェイ・グレグ]";
+		mes "クローンスキルは僕達ローグにとって";
+		mes "最高のスキルだ！";
+		mes "僕はクローンスキルを習得しているけど";
+		mes "これから実戦で試してみたい。";
+		mes "どう？　ちょっと僕の相手を";
+		mes "してみないかい？　はは……。";
+		close;
+	}
+	switch(SKILL_CLOSECONFINE) {
+	case 0:
+		mes "[ジェイ・グレグ]";
+		mes "^FF0000親父^000000を訪ねて来たのかい？";
+		mes "さっきの奴らの一味じゃなさそうだね。";
+		mes "うむ、良かった。";
+		mes "^FF0000親父^000000はあいつらから逃れるため";
+		mes "ギルドの中の隠し部屋に";
+		mes "身を隠しているんだ。";
+		set SKILL_CLOSECONFINE,1;
+		close;
+	case 1:
+		mes "[ジェイ・グレグ]";
+		mes "^FF0000親父^000000はあいつらから逃れるため";
+		mes "ギルドの中の隠し部屋に";
+		mes "身を隠しているんだ。";
+		mes "マキの左側の部屋のどこかに……。";
+		close;
+	case 2:
+		mes "[ジェイ・グレグ]";
+		mes "^FF0000ルイ^000000はここじゃなく、";
+		mes "ローグギルドのホルグレンJr.の";
+		mes "側にいるよ。";
+		close;
+	case 3:
+		mes "[ジェイ・グレグ]";
+		mes "^FF0000トール^000000はギルドの";
+		mes "ヘルマンソンJr.の側にいるよ。";
+		close;
+	case 4:
+		mes "^0000FF-トール・グレグの書状を渡した-^000000";
+		next;
+		mes "[ジェイ・グレグ]";
+		mes "やはりそうだったのか。";
+		mes "早くギルドにこのことを知らせて";
+		mes "^FF0000親父^000000にも書状を渡さないと";
+		mes "まずいな。もう一仕事頼む。";
+		mes "^0000FF-ジェイ・グレグの書状獲得-^000000";
+		set SKILL_CLOSECONFINE,5;
+		close;
+	case 5:
+		mes "[ジェイ・グレグ]";
+		mes "^FF0000親父^000000にも書状を渡さないと";
+		mes "まずい。もう一仕事頼む。";
+		mes "^FF0000親父^000000はギルドの中の";
+		mes "隠し部屋にいるよ。";
+		close;
+	case 6:
+		mes "[ジェイ・グレグ]";
+		mes "へぇ、秘術習得の許可を受けたのかい。";
+		mes "おめでとう。";
+		mes "だが、教えるのは僕じゃない。";
+		mes "^FF0000トール^000000の所に行ってみな。";
+		close;
+	case 7:
+		mes "[ジェイ・グレグ]";
+		mes "途中で失敗したのかい？";
+		mes "また修練を受けるのなら";
+		mes "^FF0000トール^000000の所に行ってみな。";
+		close;
+	case 8:
+		mes "[ジェイ・グレグ]";
+		mes "お～すごいじゃないか。";
+		mes "僕に先に声をかけてくれるとは";
+		mes "嬉しいねぇ。";
+		mes "さ、^FF0000トール^000000の所にも行きなよ。";
+		close;
+	case 9:
+		mes "[ジェイ・グレグ]";
+		mes "^FF0000親父^000000にスキルについて";
+		mes "詳しい説明を聞くといいよ。";
+		close;
+	default:
+		mes "[ジェイ・グレグ]";
+		mes "キミがローグ達の希望になることを";
+		mes "信じているよ。";
+		close;
+	}
+}
+
+in_rogue.gat,88,119,3	script	待機室担当#rogue10	828,{
+	end;
+OnInit:
+	waitingroom "修練場",10,"待機室担当#rogue10::OnStart",1;
+	end;
+OnStart:
+	disablewaitingroomevent;
+	warpwaitingpc "prt_are01.gat",150,150;
+	end;
+}
+
+prt_are01.gat,150,150,0	script	#Recognition1st	139,10,10,{
+	initnpctimer "#Fiveminute1st";
+	initnpctimer "#Moving1st";
+	hideonnpc;
+	end;
+}
+
+prt_are01.gat,135,135,0	script	#Fiveminute1st	-1,{
+OnTimer1000:
+	announce "こちらは封鎖技術の修練場です。入場してから5分後に外へ移動します。",0x09,0x00FF00;
+	end;
+OnTimer290000:
+	announce "20秒後に外へ移動します。",0x09,0x00FF00;
+	end;
+OnTimer310000:
+	announce "5秒後に外へ移動します。",0x09,0x00FF00;
+	end;
+OnTimer315000:
+	announce "外へ移動します。",0x09,0x00FF00;
+	for(set '@i,1; '@i <= 8; set '@i,'@i+1)
+		hideonnpc "キエナ#" +'@i;
+	stopnpctimer "#Moving1st";
+	hideoffnpc "#Recognition1st";
+	enablewaitingroomevent "待機室担当#rogue10";
+	stopnpctimer;
+	mapwarp "prt_are01.gat","in_rogue.gat",264,124;
+	end;
+}
+
+prt_are01.gat,135,135,0	script	#Moving1st	-1,{
+OnTimer3000:
+	announce "1秒後にキエナが登場します。キエナを捕まえてください。",0x09,0x00FF00;
+	end;
+OnTimer5000:
+	hideoffnpc "キエナ#" +rand(1,8);
+	end;
+OnTimer8000:
+	for(set '@i,1; '@i <= 8; set '@i,'@i+1)
+		hideonnpc "キエナ#" +'@i;
+	end;
+OnTimer9000:
+	initnpctimer;
+	mapwarp "prt_are01.gat","prt_are01.gat",150,150;
+	end;
+}
+
+prt_are01.gat,149,162,0	script	キエナ#1	700,1,1,{
+	end;
+OnInit:
+	hideonnpc;
+	end;
+OnTouch:
+	switch(SKILL_CLOSECONFINE) {
+	case 6:
+		stopnpctimer "#Moving1st";
+		mes "[キエナ]";
+		mes "挑戦者は私の移動方向を";
+		mes "予測して、封鎖方向を";
+		mes "指定してください。";
+		set SKILL_CLOSECONFINE,7;
+		set '@suc,0;
+		next;
+		for(set '@lim,0; '@lim < 10; set '@lim,'@lim+1) {
+			menu "左移動封鎖",-,"右移動封鎖",-,"後方移動封鎖",-;
+			mes "[キエナ]";
+			if(rand(3))
+				mes "封鎖失敗";
+			else {
+				mes "封鎖成功!!!";
+				misceffect 204;
+				misceffect 210,"";
+				set '@suc,'@suc+1;
+			}
+			next;
+		}
+		mes "[キエナ]";
+		mes "---修練終了---";
+		mes "-あなたのランクは-";
+		switch('@suc) {
+			case 10: mes "------ S ------"; break;
+			case 9: mes "------ A ------"; break;
+			case 8: mes "------ B+ -----"; break;
+			case 7: mes "------ B ------"; break;
+			case 6: mes "------ C+ -----"; break;
+			case 5: mes "------ C ------"; break;
+			case 4: mes "------ D+ -----"; break;
+			case 3: mes "------ D ------"; break;
+			case 2:
+			case 1: mes "------ F ------"; break;
+			case 0: mes "---測定不可---"; break;
+		}
+		next;
+		if('@suc > 5) {
+			mes "[キエナ]";
+			mes "お疲れ様でした。";
+			mes "あなたはスキルを習得する";
+			mes "資質を十分に持っています。";
+			mes "トール・グレグのいる場所へ";
+			mes "転送してさしあげます。";
+			set SKILL_CLOSECONFINE,8;
+			close2;
+			hideonnpc;
+			stopnpctimer "#Fiveminute1st";
+			hideoffnpc "#Recognition1st";
+			enablewaitingroomevent "待機室担当#rogue10";
+			warp "in_rogue.gat",264,124;
+			end;
+		}
+		mes "[キエナ]";
+		mes "まだ未熟ですね。";
+		mes "スキル習得のための";
+		mes "再挑戦をしますか？";
+		next;
+		if(select("はい、再挑戦します!!","いいえ、やめます")==1) {
+			hideonnpc;
+			initnpctimer "#Moving1st";
+			set SKILL_CLOSECONFINE,6;
+			warp "prt_are01.gat",150,150;
+			end;
+		}
+		hideonnpc;
+		stopnpctimer "#Fiveminute1st";
+		hideoffnpc "#Recognition1st";
+		set SKILL_CLOSECONFINE,6;
+		enablewaitingroomevent "待機室担当#rogue10";
+		warp "in_rogue.gat",264,124;
+		end;
+	case 7:
+		mes "[キエナ]";
+		mes "修練を中断されたのですね。";
+		mes "では、また最初から";
+		mes "開始しなければなりません。";
+		set SKILL_CLOSECONFINE,6;
+		close2;
+		hideonnpc;
+		initnpctimer "#Moving1st";
+		warp "prt_are01.gat",150,150;
+		end;
+	case 8:
+		mes "[キエナ]";
+		mes "あなたは修練を終えています。";
+		mes "トール・グレグのいる場所へ";
+		mes "転送してさしあげます。";
+		close2;
+		hideonnpc;
+		stopnpctimer "#Fiveminute1st";
+		hideoffnpc "#Recognition1st";
+		enablewaitingroomevent "待機室担当#rogue10";
+		warp "in_rogue.gat",264,124;
+		end;
+	default:
+		mes "[キエナ]";
+		mes "ここに入ってきてはいけません。";
+		close2;
+		hideonnpc;
+		stopnpctimer "#Fiveminute1st";
+		hideoffnpc "#Recognition1st";
+		enablewaitingroomevent "待機室担当#rogue10";
+		warp "in_rogue.gat",264,124;
+		end;
+	}
+}
+prt_are01.gat,136,150,0	duplicate(キエナ#1)	キエナ#2	700,1,1
+prt_are01.gat,150,138,0	duplicate(キエナ#1)	キエナ#3	700,1,1
+prt_are01.gat,163,147,0	duplicate(キエナ#1)	キエナ#4	700,1,1
+prt_are01.gat,134,140,0	duplicate(キエナ#1)	キエナ#5	700,1,1
+prt_are01.gat,161,140,0	duplicate(キエナ#1)	キエナ#6	700,1,1
+prt_are01.gat,161,160,0	duplicate(キエナ#1)	キエナ#7	700,1,1
+prt_are01.gat,138,159,0	duplicate(キエナ#1)	キエナ#8	700,1,1
+
+in_rogue.gat,359,177,0	script	#Assassin01	-1,{
+OnTimer1000:
+	hideoffnpc "刺客#rogue";
+	end;
+OnTimer120000:
+	hideonnpc "刺客#rogue";
+	stopnpctimer;
+	end;
+}
+
+in_rogue.gat,357,174,2	script	刺客#rogue	705,1,1,{
+	end;
+OnTouch:
+	switch(SKILL_CLOSECONFINE) {
+	case 10:
+		misceffect 174,"";
+		misceffect 175;
+		misceffect 348,"";
+		set SKILL_CLOSECONFINE,11;
+		mes "[刺客]";
+		mes "……";
+		mes "う……ご……け……ない……。";
+		mes "なん……だ……。";
+		next;
+		mes "[ハイジャラ・グレグ]";
+		mes "そうだ！　今の秘術が君たちが";
+		mes "狙っていた";
+		mes "^4D4DFFクローズコンファイン^000000だ!!";
+		next;
+		mes "[ハイジャラ・グレグ]";
+		mes "「刺客」の左移動は白!!!";
+		mes "「刺客」の右移動は黄!!!";
+		mes "「刺客」の後方移動は赤!!!";
+		mes "のオーラが見えるはず。";
+		mes "お前の^4D4DFFクローズコンファイン^000000は完璧だ！";
+		mes "彼から秘術書を取り戻してくれ。";
+		next;
+		setarray '@effect,174,175,177;
+		for(set '@lim,0; '@lim < 10; set '@lim,'@lim+1) {
+			set '@move,rand(1,3);
+			misceffect '@effect['@move-1];
+			if(select("左移動封鎖","右移動封鎖","後方移動封鎖")=='@move) {
+				mes "封鎖成功!!!";
+				misceffect 204;
+				misceffect 210,"";
+			}
+			else
+				mes "封鎖失敗";
+			next;
+		}
+		mes "[刺客]";
+		mes "あ……れ……。";
+		mes "^0000FFチェテクベの秘術書獲得-^000000";
+		close2;
+		hideonnpc;
+		stopnpctimer "#Assassin01";
+		end;
+	case 11:
+		mes "[刺客]";
+		mes "あ……れ……。";
+		mes "クゥ……。";
+		close2;
+		hideonnpc;
+		stopnpctimer "#Assassin01";
+		end;
+	default:
+		end;
+	}
+OnInit:
+	hideonnpc;
+	end;
+}
